@@ -7,6 +7,7 @@ class Main : RequestHandler<DynamodbEvent, String>{
     private val logger = KotlinLogging.logger {}
 
     override fun handleRequest(input: DynamodbEvent?, context: Context?): String {
+        logger.info { "Request ID: ${context?.awsRequestId}" }
         val response = "200 OK"
         if (input != null) {
             input.records?.let {
